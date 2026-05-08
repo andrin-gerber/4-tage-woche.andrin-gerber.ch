@@ -120,19 +120,77 @@ body{
 
 
 /* Audio */
+audio{
+  border-radius: 12px;
+  overflow: hidden;
+}
+
 .audio-card{
   margin: var(--ga-large) 0;
   display: grid;
-  gap: 10px;
+  gap: var(--ga-large);
+  grid-template-columns: 160px 1fr;
+  padding: var(--ga-large);
+  background: var(--surface);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.audio-image{
+  width: 160px;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 50%;
+  background: var(--line);
+  flex-shrink: 0;
+}
+
+.audio-content{
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
 .audio-label{
   margin: 0;
+  font-size: 1.1rem;
+  font-weight: 700;
 }
 
-.audio{
+.audio-card .audio{
   width: 100%;
   height: var(--ga-large);
+  grid-column: 1 / -1;
+  border-radius: 12px;
+}
+
+.audio-content .text-toggle{
+  margin-top: 8px;
+}
+
+.audio-content .text-toggle summary {
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+.audio-content .text-toggle[open] summary {
+  margin-bottom: 0.5rem;
+}
+
+.audio-content .text-toggle p {
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+@media (max-width: 640px){
+  .audio-card{
+    grid-template-columns: 1fr;
+  }
+
+  .audio-image{
+    margin: 0 auto;
+  }
 }
 
 
@@ -156,7 +214,6 @@ figure {
   width: 100%;
   height: auto;
   border-radius: var(--radius);
-  border: 1px solid var(--line);
 }
 
 .figure-caption{
@@ -165,6 +222,9 @@ figure {
   font-size: .95rem;
 }
 
+#grafik{
+  border-radius: 0;
+}
 
 /* Zusammenfassung oder Transkription 
 für Menschen mit Hörbeeinträchtigung */
@@ -192,10 +252,24 @@ für Menschen mit Hörbeeinträchtigung */
 }
 
 .zitat{
-  font-style: italic;
-  margin-top: var(--ga-large);
-  margin-bottom: var(--ga-large);
-  margin-left: 20%;
-  margin-right: 20%;
-  font-size: large;
+  margin: var(--ga-large) 0;
+  padding: var(--ga-large);
+  background: var(--surface);
+  border-left: 4px solid var(--accent);
+  border-radius: 6px;
+  font-size: 1.3rem;
+  font-weight: 600;
+  line-height: 1.5;
+  color: var(--text);
+  box-shadow: var(--shadow);
 }
+
+.zitatUnten{
+  margin: 0;
+  padding-top: var(--ga-medium);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--accent);
+  text-align: right;
+}
+
