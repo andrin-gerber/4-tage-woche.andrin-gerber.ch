@@ -72,7 +72,7 @@ html{
 
 body{
   margin: 0;
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+  font-family: 'Mundial', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
   line-height: 1.6;
   background: var(--bg);
   color: var(--text);
@@ -190,7 +190,7 @@ html[data-theme="dark"] .theme-toggle .moon-icon{
 /* Inhalt -Header */
 .preheadline{
   margin: 0 0 var(--ga-small);
-  color: var(--muted);
+  color: var(--accent);
   font-weight: 800;
 }
 
