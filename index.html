@@ -14,8 +14,38 @@
 
   <body>
     <header class="site-header">
-      <div class="container">
+      <div class="container header-content">
         <div class="brand">Multimediabeitrag</div>
+        <button
+          id="theme-toggle"
+          class="theme-toggle"
+          aria-label="Dark/Light Mode wechseln"
+        >
+          <svg
+            class="theme-icon sun-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+          <svg
+            class="theme-icon moon-icon"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+          >
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+        </button>
       </div>
     </header>
 
@@ -56,6 +86,17 @@
         <!-- Ende - Content-Header -->
 
         <!-- VARIABLE: Inhalte können ab hier in der Reihenfolge angepasst werden -->
+        <!-- BLOCK: Einzelbild + Bildlegende -->
+        <figure class="content-block">
+          <img
+            class="figure-image"
+            src="assets/images/Livia Start.png"
+            alt="Livia am Anfang ihrer Geschichte"
+            loading="lazy"
+          />
+        </figure>
+        <!-- Ende - BLOCK: Einzelbild + Bildlegende -->
+
         <!-- BLOCK: Zwischentitel + Textblock -->
         <section class="content-block text-block">
           <h2 class="subheadline">Fiktives Beispiel</h2>
@@ -389,6 +430,17 @@
         </section>
         <!-- Ende - BLOCK: Zwischentitel + Textblock -->
 
+        <!-- BLOCK: Einzelbild + Bildlegende -->
+        <figure class="content-block">
+          <img
+            class="figure-image"
+            src="assets/images/Livia Ende.png"
+            alt="Livia am Ende ihrer Geschichte"
+            loading="lazy"
+          />
+        </figure>
+        <!-- Ende - BLOCK: Einzelbild + Bildlegende -->
+
         <!-- BLOCK: Zwischentitel + Textblock -->
         <section class="content-block text-block">
           <h2 class="subheadline">Livia ist froh über die 4-Tage-Woche</h2>
@@ -460,5 +512,57 @@
         </footer>
       </article>
     </main>
+
+    <script>
+      // Theme Toggle Funktionalität
+      const themeToggle = document.getElementById("theme-toggle");
+      const htmlElement = document.documentElement;
+      const THEME_KEY = "theme-preference";
+
+      // Theme initialisieren
+      function initTheme() {
+        const savedTheme = localStorage.getItem(THEME_KEY);
+
+        if (savedTheme) {
+          htmlElement.setAttribute("data-theme", savedTheme);
+        } else {
+          // System-Präferenz verwenden
+          const prefersDark = window.matchMedia(
+            "(prefers-color-scheme: dark)",
+          ).matches;
+          htmlElement.setAttribute(
+            "data-theme",
+            prefersDark ? "dark" : "light",
+          );
+        }
+      }
+
+      // Theme wechseln
+      function toggleTheme() {
+        const currentTheme = htmlElement.getAttribute("data-theme");
+        const newTheme = currentTheme === "dark" ? "light" : "dark";
+
+        htmlElement.setAttribute("data-theme", newTheme);
+        localStorage.setItem(THEME_KEY, newTheme);
+      }
+
+      // System-Änderungen beobachten
+      window
+        .matchMedia("(prefers-color-scheme: dark)")
+        .addEventListener("change", (e) => {
+          if (!localStorage.getItem(THEME_KEY)) {
+            htmlElement.setAttribute(
+              "data-theme",
+              e.matches ? "dark" : "light",
+            );
+          }
+        });
+
+      // Event Listener für Button
+      themeToggle.addEventListener("click", toggleTheme);
+
+      // Theme beim Laden initialisieren
+      initTheme();
+    </script>
   </body>
 </html>
